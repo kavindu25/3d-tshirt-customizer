@@ -1,10 +1,11 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { easing } from "maath";
 import { useSnapshot } from "valtio";
 import { useFrame } from "@react-three/fiber";
 
 import state from "../store";
 
+// eslint-disable-next-line react/prop-types
 const CameraRig = ({ children }) => {
   const group = useRef();
   const snap = useSnapshot(state);
