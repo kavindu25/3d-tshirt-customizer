@@ -37,9 +37,29 @@ const Customizer = () => {
       case "filepicker":
         return <FilePicker file={file} setFile={setFile} readFile={readFile} />;
       case "aipicker":
-        return <AIPicker />;
+        return (
+          <AIPicker
+            prompt={prompt}
+            setPrompt={setPrompt}
+            generatingImage={generatingImage}
+            handleSubmit={handleSubmit}
+          />
+        );
       default:
         return null;
+    }
+  };
+
+  const handleSubmit = async (type) => {
+    if (!prompt) return alert("Please enter a prompt!");
+    try {
+      //calling backend to generate the image
+      
+    } catch (error) {
+      alert(error);
+    } finally {
+      setGeneratingImage(false);
+      setActiveEditorTab("");
     }
   };
 
@@ -129,11 +149,11 @@ const Customizer = () => {
                 }}
               />
             ))}
-            <button className='download-btn' onClick={downloadCanvasToImage}>
+            <button className="download-btn" onClick={downloadCanvasToImage}>
               <img
                 src={download}
-                alt='download_image'
-                className='w-3/5 h-3/5 object-contain'
+                alt="download_image"
+                className="w-3/5 h-3/5 object-contain"
               />
             </button>
           </motion.div>
