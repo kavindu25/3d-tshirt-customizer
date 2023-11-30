@@ -15,7 +15,7 @@ const FilePicker = ({ file, setFile, readFile }) => {
         <label htmlFor="file-upload" className="filepicker-label">
           Upload File
         </label>
-        <p className="mt-2 text-gray-500 text-xs truncate">
+        <p className="mt-2 text-gray-100 text-xs truncate">
           {file === "" ? "No File Selected" : file.name}
         </p>
       </div>
