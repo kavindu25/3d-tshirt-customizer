@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import  { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSnapshot } from "valtio";
 
-import config from "../config/config";
+// import config from "../config/config";
 import state from "../store";
 import { download } from "../assets";
 import { downloadCanvasToImage, reader } from "../config/helpers";
@@ -20,8 +20,8 @@ const Customizer = () => {
   const snap = useSnapshot(state);
 
   const [file, setFile] = useState("");
-  const [prompt, setPrompt] = useState("");
-  const [generatingImage, setGeneratingImage] = useState(false);
+  // const [prompt, setPrompt] = useState("");
+  // const [generatingImage, setGeneratingImage] = useState(false);
 
   const [activeEditorTab, setActiveEditorTab] = useState("");
   const [activeFilterTab, setActiveFilterTab] = useState({
@@ -39,10 +39,10 @@ const Customizer = () => {
       case "aipicker":
         return (
           <AIPicker
-            prompt={prompt}
-            setPrompt={setPrompt}
-            generatingImage={generatingImage}
-            handleSubmit={handleSubmit}
+            // prompt={prompt}
+            // setPrompt={setPrompt}
+            // generatingImage={generatingImage}
+            // handleSubmit={handleSubmit}
           />
         );
       default:
@@ -50,18 +50,19 @@ const Customizer = () => {
     }
   };
 
-  const handleSubmit = async (type) => {
-    if (!prompt) return alert("Please enter a prompt!");
-    try {
-      //calling backend to generate the image
-      
-    } catch (error) {
-      alert(error);
-    } finally {
-      setGeneratingImage(false);
-      setActiveEditorTab("");
-    }
-  };
+  // const handleSubmit = async () => {
+  //   if (!prompt) return alert("Please enter a prompt!");
+  //   try {
+  //     //calling backend to generate the image
+  //     setGeneratingImage(true);
+  //     // const res = await fetch (backendUrl)
+  //   } catch (error) {
+  //     alert(error);
+  //   } finally {
+  //     setGeneratingImage(false);
+  //     setActiveEditorTab("");
+  //   }
+  // };
 
   const handleDecals = (type, result) => {
     const decalType = DecalTypes[type];
