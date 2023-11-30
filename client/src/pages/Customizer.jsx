@@ -8,7 +8,13 @@ import { download } from "../assets";
 import { downloadCanvasToImage, reader } from "../config/helpers";
 import { EditorTabs, FilterTabs, DecalTypes } from "../config/constants";
 import { fadeAnimation, slideAnimation } from "../config/motion";
-import { CustomButton, Tab } from "../components";
+import {
+  AIPicker,
+  ColorPicker,
+  CustomButton,
+  FilePicker,
+  Tab,
+} from "../components";
 
 const Customizer = () => {
   const snap = useSnapshot(state);
@@ -17,11 +23,25 @@ const Customizer = () => {
   const [prompt, setPrompt] = useState("");
   const [generatingImage, setGeneratingImage] = useState(false);
 
-  const [activateEditorTab, setActivateEditorTab] = useState('')
-  const []
+  const [activeEditorTab, setActiveEditorTab] = useState("");
+  const [activeFilterTab, setActiveFilterTab] = useState({
+    logoShirt: true,
+    stylisgShirt: false,
+  });
 
   //show tab content depending on active tab
-  const generateTabContent = () => {};
+  const generateTabContent = () => {
+    switch (activeEditorTab) {
+      case "colorpicker":
+        return <ColorPicker />;
+      case "filepicker":
+        return <FilePicker />;
+      case "aipicker":
+        return <AIPicker />;
+      default:
+        return null;
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -35,8 +55,13 @@ const Customizer = () => {
             <div className="flex items-center min-h-screen ">
               <div className="editortabs-container tabs">
                 {EditorTabs.map((tab) => (
-                  <Tab key={tab.name} tab={tab} handleClick={() => {}} />
+                  <Tab
+                    key={tab.name}
+                    tab={tab}
+                    handleClick={() => setActiveEditorTab(tab.name)}
+                  />
                 ))}
+                {generateTabContent()}
               </div>
             </div>
           </motion.div>
